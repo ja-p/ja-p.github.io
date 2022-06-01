@@ -1,6 +1,8 @@
 ---
-title: "About"
-draft: true
+title: "About Fishinspace"
+draft: false
 ---
 
-This is me
+Hello! 
+
+Still in construction. 🚧
