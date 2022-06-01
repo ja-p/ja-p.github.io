@@ -1,3 +1,3 @@
 [submodule "themes/etch"]
 	path = themes/etch
-	url = https://github.com/ja-p/hugo-theme-etch
+	url = git@github.com:ja-p/hugo-theme-etch.git
