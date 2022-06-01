@@ -1,4 +1,4 @@
-baseURL = "https://blog.vuln.fish"
+baseURL = "https://ja-p.github.io"
 title = "Fish in Space's Blog"
 theme = "etch"
 languageCode = "en-US"
@@ -7,8 +7,8 @@ pygmentsCodeFences = true
 pygmentsUseClasses = true
 
 [params]
-  description = "Your site description"
-  copyright = "Copyright © 2022 Jose A-P"
+  description = "Cybersecurity and CTF Blog"
+  copyright = "Copyright © 2022 Jose Apari-Pantigozo"
   dark = "on"
   highlight = true
 
