@@ -1,9 +1,8 @@
 ---
 title: "[NorthSec CTF 2022] Marketing Email Template"
-date: 2022-06-02
+date: 2022-06-07
 draft: false
-#url: /nsec2022-email-template
-url: /25f349ed-948e-48eb-969b-3cdca74b7b0e 
+url: /nsec2022-email-template
 ---
 
 # Introduction
