@@ -7,9 +7,9 @@ pygmentsCodeFences = true
 pygmentsUseClasses = true
 
 [params]
-  description = "Cybersecurity and CTF Blog"
+  description = "Blog mostly about Cybersecurity"
   copyright = "Copyright © 2022 Jose Apari-Pantigozo"
-  dark = "on"
+  dark = "off"
   highlight = true
 
 [menu]
