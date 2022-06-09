@@ -1,5 +1,5 @@
 baseURL = "https://aparipantigozo.com"
-title = "Website mostly about Cybersecurity"
+title = "Blog @ Jose "Fish in Space" Apari-Pantigozo"
 theme = "etch"
 languageCode = "en-US"
 enableInlineShortcodes = true
@@ -8,7 +8,7 @@ pygmentsUseClasses = true
 
 [params]
   description = "Personal blog for Jose Apari-Pantigozo AKA Fish in Space"
-  copyright = "Copyright © 2022 Jose Apari-Pantigozo"
+  copyright = "© 2022 Jose Apari-Pantigozo"
   dark = "off"
   highlight = true
 
