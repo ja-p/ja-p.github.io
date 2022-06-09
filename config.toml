@@ -1,5 +1,5 @@
-baseURL = "https://ja-p.github.io"
-title = "Fish in Space's Blog"
+baseURL = "https://aparipantigozo.com"
+title = "Website mostly about Cybersecurity"
 theme = "etch"
 languageCode = "en-US"
 enableInlineShortcodes = true
@@ -7,7 +7,7 @@ pygmentsCodeFences = true
 pygmentsUseClasses = true
 
 [params]
-  description = "Blog mostly about Cybersecurity"
+  description = "Personal blog for Jose Apari-Pantigozo AKA Fish in Space"
   copyright = "Copyright © 2022 Jose Apari-Pantigozo"
   dark = "off"
   highlight = true
