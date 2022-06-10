@@ -1,35 +1,164 @@
 baseURL = "https://aparipantigozo.com"
-title = "Blog @ Jose \"Fish in Space\" Apari-Pantigozo"
-theme = "etch"
-languageCode = "en-US"
+defaultContentLanguage = 'en'
+title = "Need a good title"
+theme = "color-your-world"
+enableEmoji = true
 enableInlineShortcodes = true
-pygmentsCodeFences = true
-pygmentsUseClasses = true
+
+paginate = 3
+
+[markup.highlight]
+    noClasses = false
+
+[languages]
+    [languages.en]
+        languageName = "English"
+
+        [languages.en.menu]
+            [[languages.en.menu.main]]
+                name = "About"
+                weight = 1
+                url = "/"
+
+            [[languages.en.menu.main]]
+                name = "Posts"
+                weight = 2
+                url = "posts/"
+      
+            [[languages.en.menu.main]]
+                name = "Contact"
+                weight = 3
+                url = "contact/"
 
 [params]
-  description = "Personal blog for Jose Apari-Pantigozo AKA Fish in Space"
-  copyright = "© 2022 Jose Apari-Pantigozo"
-  dark = "off"
-  highlight = true
+    # Site description
+    description = "Personal blog for Jose \"Fish in Space\" Apari-Pantigozo"
 
-[menu]
-  [[menu.main]]
-    identifier = "posts"
-    name = "posts"
-    title = "posts"
-    url = "/"
-    weight = 10
+    # Author
+    author      = "Jose Apari-Pantigozo"
+    authorDesc  = "Offensive Cybersecurity Research Enthusiast"
 
-  [[menu.main]]
-    identifier = "about"
-    name = "about"
-    title = "about"
-    url = "/about/"
-    weight = 20
+    # Footer text
+    # Each value will become a paragraph
+    # Keep it as an array
+    footerText = [ "Generated with [Hugo](https://gohugo.io) using the [Color Your World](https://gitlab.com/rmaguiar/hugo-theme-color-your-world) theme.", "© 2022 Jose Apari-Pantigozo" ]
 
-[permalinks]
-  posts = "/:title/"
+    # Site cover, for Open Graph, Twitter Cards and Schema.org
+    # It will be used if the current page doesn't have an image cover
+    # File will be picked from the "assets" directory
+    # Comment the lines if you don't want to use it
+    #cover     = "img/cover.jpg"
+    #coverAlt  = "A placeholder that doesn't deserve to be described."
 
-[markup.goldmark.renderer]
-  # Allows HTML in Markdown
-  unsafe = true
+    # Shows a message in the footer about JavaScript being disabled
+    # The default is false
+    hasNoscriptNotice = true
+
+    # Default path for images in posts
+    # ie.: "content/some-post/img"
+    # Can also be set PER PAGE
+    # It can be used to reduce repetition
+    # There's no default value
+    imgPath = "img"
+
+    # Default classes for markup image 
+    # Modifies the default behavior of images placed via markdown
+    # Can also be set PER PAGE via front matter
+    # Available classes are: border and borderless
+    # There's no default value
+    markupImgClass = "borderless"
+
+    # This will append a separator (of your choice) along the site title to your <title>
+    # ie.: | ❚ - – — • ⚫
+    # You can disabled it PER PAGE by using "disableTitleSeparator" at front
+    # matter or disable it entirely by commenting the line below
+    titleSeparator = "|"
+  
+    [params.search]
+        # Enable search form (at the post list)
+        # The default value is false
+        enable = true
+
+        # Limit search results
+        # The default value is 30
+        maxResults = 15
+
+        # Limit seach field input and pattern matching
+        minLength = 2   # Default is 3
+        maxLength = 42  # Default is 32
+
+        # Optional placeholder for search field
+        placeholder = "ie.: lorem ipsum"
+
+        # Stop word filter list
+        # Can also be set PER PAGE via front matter
+        # There's no default value
+        stopWords = [ "a", "an", "and", "in", "the", "to", "was", "were", "with" ]
+
+    [params.style]
+        # Disable the use of system settings (prefers-color-scheme)
+        # Can be used as a workaround for Chrome on Linux
+        # (Issue 998903: Dark Gtk theme does not affect prefers-color-scheme media query)
+        # The default is false
+        ignoreSystemSettings = false
+
+        # Use an icon or text for footnote return links
+        # The default is false
+        hasIconAsFootnoteReturnLink = true
+
+        # For the social shortcode
+        # Use flexbox (with flex-grow) or grid (equal width)
+        # The default is false
+        socialIsFlex = true
+
+        # Keep anchor links hidden until it's focused/hovered
+        # They will always be visible in mobile devices, regardless the option
+        # The default is false
+        hideAnchors = true
+
+        # CSS animation transition when changing colors
+        # The default is ".5s ease"
+        changeTransition = ".3s ease"
+        # Dark mode as default
+        # User preferences (site/system settings) will still have priority over it
+        # The default is false
+        isDark = false
+
+        # Accent colors for dark and light mode respectively
+        darkAccent   = "#a191c4" # Default is "#1dbc91"
+        lightAccent  = "#5f4b8b" # Default is "#1f676b"
+
+        # More colors, pick as many as you want (not really sure if there's a limit)
+        # Apparently these may not show up on every modern browser (ie.: Firefox)
+        # There's no default value. Used here just as example
+        # presets = [ "#1f676b", "#f3a530", "#902b37", "#1dbc91", "#754e85", "#7fc121", "#a8314a", "#ff7433", "#3e6728", "#c063bd" ]
+
+    [params.social.centralized]
+        # facebook      = [ "<username>", "Zuckerburg" ]
+        # flickr        = [ "<username>" ]
+        github        = [ "ja-p" ]
+        # gitlab        = [ "<username>" ]
+        # instagram     = [ "<username>" ]
+        # keybase       = [ "<username>" ]
+        linkedin      = [ "japari-pantigozo" ]
+        # medium        = [ "<username>" ]
+        # reddit        = [ "<username>" ]
+        # snapchat      = [ "<username>" ]
+        # soundcloud    = [ "<username>" ]
+        # stackOverflow = [ "<username>" ]
+        # strava        = [ "<username>" ]
+        # telegram      = [ "<username>" ]
+        # twitch        = [ "<username>" ]
+        twitter       = [ "aparipantigozo", "@aparipantigozo" ]
+        # vimeo         = [ "<username>" ]
+        # whatsapp      = [ "<number>" ]
+        # xing          = [ "<username>" ]
+        # youtube       = [ "<channelid>" ]
+
+    [params.social.decentralized]
+        a = "a"
+
+    [params.notFound]
+        title         = "Page not found"
+        description   = "This page was not found."
+        paragraph     = "Nothing to see here, buddy."

@@ -1,0 +1,5 @@
+public
+resources
+*.bak
+*.kate-swp
+.hugo_build.lock
