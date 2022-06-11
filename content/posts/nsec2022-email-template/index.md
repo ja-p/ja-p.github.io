@@ -1,8 +1,8 @@
 ---
 title: "[NSEC 2022] Marketing Email Template"
-date: 2022-06-07
+date: 2022-06-11
 draft: false
-url: /nsec2022-email-template
+url: /nsec2022-marketing-email-template
 toc: true
 tags: [ "CTF" , "NSEC" ]
 ---
