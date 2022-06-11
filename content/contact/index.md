@@ -6,7 +6,12 @@ description     : "How to reach me."
 sitemapExclude  : true
 ---
 
-That's actually me.
+{{< img class="borderless rounded" src="logo.png" caption="Fish in Space logo" resize=true >}}
+
+If you have seen the username "Fish in Space" somewhere, it was likely me.
+
+You can reach me via: 
+- Discord: **Fish in Space#8954**
 
 You can also find me at:
 

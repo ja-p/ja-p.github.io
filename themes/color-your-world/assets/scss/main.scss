@@ -929,7 +929,6 @@ video {
 // Table of Contents
 .toc {
   
-  background: var(--alt-bg);
   color: var(--dtl);
 
   transition:
@@ -941,6 +940,7 @@ video {
     background: var(--accent);
     border: 1px solid rgba(0,0,0,.3);
     border-radius: $border-radius;
+    border-color: var(--accent);
 
     outline-offset: 2px;
     
@@ -977,8 +977,8 @@ video {
   nav#TableOfContents {
     
     border-style: solid;
-    border-color: rgba(0,0,0,.3);
-    border-width: 0 1px 1px;
+    border-color: var(--accent);
+    border-width: 0 3px 3px;
     
     border-radius: 0 0 $border-radius $border-radius;
     
@@ -1461,7 +1461,7 @@ main {
   margin: 90px auto;
   padding: 0 15px;
   
-  max-width: 660px;
+  max-width: 720px;
 }
 
 article {

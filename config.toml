@@ -1,6 +1,6 @@
 baseURL = "https://aparipantigozo.com"
 defaultContentLanguage = 'en'
-title = "Need a good title"
+title = "Jose Apari-Pantigozo"
 theme = "color-your-world"
 enableEmoji = true
 enableInlineShortcodes = true
@@ -16,13 +16,13 @@ paginate = 3
 
         [languages.en.menu]
             [[languages.en.menu.main]]
-                name = "About"
-                weight = 1
-                url = "/"
+                name = "CV"
+                weight = 2
+                url = "/curriculum-vitae"
 
             [[languages.en.menu.main]]
                 name = "Posts"
-                weight = 2
+                weight = 1
                 url = "posts/"
       
             [[languages.en.menu.main]]
@@ -41,7 +41,7 @@ paginate = 3
     # Footer text
     # Each value will become a paragraph
     # Keep it as an array
-    footerText = [ "Generated with [Hugo](https://gohugo.io) using the [Color Your World](https://gitlab.com/rmaguiar/hugo-theme-color-your-world) theme.", "© 2022 Jose Apari-Pantigozo" ]
+    footerText = [ "Generated with [Hugo](https://gohugo.io) with a theme inspired by [Color Your World](https://gitlab.com/rmaguiar/hugo-theme-color-your-world).", "© 2022 Jose Apari-Pantigozo" ]
 
     # Site cover, for Open Graph, Twitter Cards and Schema.org
     # It will be used if the current page doesn't have an image cover
@@ -109,7 +109,7 @@ paginate = 3
         # For the social shortcode
         # Use flexbox (with flex-grow) or grid (equal width)
         # The default is false
-        socialIsFlex = true
+        socialIsFlex = false
 
         # Keep anchor links hidden until it's focused/hovered
         # They will always be visible in mobile devices, regardless the option
@@ -122,10 +122,10 @@ paginate = 3
         # Dark mode as default
         # User preferences (site/system settings) will still have priority over it
         # The default is false
-        isDark = false
+        isDark = true
 
         # Accent colors for dark and light mode respectively
-        darkAccent   = "#a191c4" # Default is "#1dbc91"
+        darkAccent   = "#c4ddff" # ef9600 # Default is "#1dbc91"
         lightAccent  = "#5f4b8b" # Default is "#1f676b"
 
         # More colors, pick as many as you want (not really sure if there's a limit)
@@ -134,13 +134,18 @@ paginate = 3
         # presets = [ "#1f676b", "#f3a530", "#902b37", "#1dbc91", "#754e85", "#7fc121", "#a8314a", "#ff7433", "#3e6728", "#c063bd" ]
 
     [params.social.centralized]
+        github          = [ "ja-p" ]
+        twitter         = [ "aparipantigozo" ]
+        linkedin        = [ "japari-pantigozo" ]
+        root-me         = [ "fishinspace" ]
+        ringzer0        = [ "31298" ]
+        pentesterlab    = [ "Fishinspace" ]
+        hackthebox      = [ "194337" ]
         # facebook      = [ "<username>", "Zuckerburg" ]
         # flickr        = [ "<username>" ]
-        github        = [ "ja-p" ]
         # gitlab        = [ "<username>" ]
         # instagram     = [ "<username>" ]
         # keybase       = [ "<username>" ]
-        linkedin      = [ "japari-pantigozo" ]
         # medium        = [ "<username>" ]
         # reddit        = [ "<username>" ]
         # snapchat      = [ "<username>" ]
@@ -149,14 +154,12 @@ paginate = 3
         # strava        = [ "<username>" ]
         # telegram      = [ "<username>" ]
         # twitch        = [ "<username>" ]
-        twitter       = [ "aparipantigozo", "@aparipantigozo" ]
         # vimeo         = [ "<username>" ]
         # whatsapp      = [ "<number>" ]
         # xing          = [ "<username>" ]
         # youtube       = [ "<channelid>" ]
 
     [params.social.decentralized]
-        a = "a"
 
     [params.notFound]
         title         = "Page not found"

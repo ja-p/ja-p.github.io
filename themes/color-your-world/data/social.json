@@ -232,5 +232,41 @@
       "id": "youtube",
       "source": "Font-Awesome"
     }
+  },
+  {
+    "entry": "root-me",
+    "label": "Root-Me.org",
+    "base": "https://www.root-me.org/",
+    "icon": {
+      "id": "root-me",
+      "source": "Font-Awesome"
+    }
+  },
+  {
+    "entry": "ringzer0",
+    "label": "RingZer0 Online CTF",
+    "base": "https://ringzer0ctf.com/profile/",
+    "icon": {
+      "id": "ringzer0",
+      "source": "Font-Awesome"
+    }
+  },
+  {
+    "entry": "pentesterlab",
+    "label": "Pentesterlab",
+    "base": "https://pentesterlab.com/profile/",
+    "icon": {
+      "id": "pentesterlab",
+      "source": "Font-Awesome"
+    }
+  },
+  {
+    "entry": "hackthebox",
+    "label": "Hackthebox",
+    "base": "https://app.hackthebox.com/profile/",
+    "icon": {
+      "id": "hackthebox",
+      "source": "None"
+    }
   }
 ]

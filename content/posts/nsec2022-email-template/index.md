@@ -4,6 +4,7 @@ date: 2022-06-07
 draft: false
 url: /nsec2022-email-template
 toc: true
+tags: [ "CTF" , "NSEC" ]
 ---
 
 ## Introduction
@@ -263,13 +264,13 @@ Using the struct `Update`, the route retrieves the `template` value of the JSON 
 
 ### ANY /preview
 
-The `Any` route used here matches all HTTP methods. The route gets a few query parameters from the request which will be used to fill a `response` map variable. The `response` variable will also contain `custom` variables which we will revisit later, and a `m` variable which is the `MyApp` instance used to read the templates.
+The `Any` route used here matches all standard HTTP methods. The route gets a few query parameters from the request which will be used to fill a `response` map variable. The `response` variable will also contain `custom` variables which we will revisit later, and a `m` variable which is the `MyApp` instance used to read the templates.
 
-The `templates/preview.html` file gets read through the `MyApp` instance and the content is parsed as template. The template is then `Execute`d with the variable `response` as its data. The http response will contain the result of executing the template with the data. 
+The `templates/preview.html` file gets read through the `MyApp` instance and the content is parsed as a template. The template is then `Execute`d with the variable `response` as its data. The http response will contain the result of executing the template with the data. 
 
 ### The Vulnerability
 
-I had never really heard of SSTI research or payloads in Go before. As such, I did a quick search to find existing research and found [one article](https://www.onsecurity.io/blog/go-ssti-method-research/) by Gus Ralph. My main takeaway was that it is possible to call exported functions from the variables that were passed to the template. 
+I had never really heard of SSTI research or payloads in Go before. As such, I did a quick search to find existing research and found [one article by Gus Ralph](https://www.onsecurity.io/blog/go-ssti-method-research/). My main takeaway was that it is possible to call exported functions from the variables that were passed to the template. 
 
 Thankfully in this challenge, the template is provided the `m` variable of type `MyApp` which as we saw contains two exported functions. 
 
@@ -498,7 +499,7 @@ and an error is returned to the caller as the value of Execute.
 `FileAttachment` has no return value, thus we get an error. We need to explore more and now we know the following requirements:
 1. The function must return 1 or 2 values if the second one is an `error`
 2. The function must perform some "exploitable" action.
-3. The function must use argument types we can provide since we cannot create arbitrary types from a template.
+3. The function must use argument types we can provide since we cannot create arbitrary types from within a template.
 
 ### The Vulnerability 
 
@@ -526,7 +527,7 @@ func (c *Context) SaveUploadedFile(file *multipart.FileHeader, dst string) error
 
 `SaveUploadedFile` fills the first and second requirements as it returns one value and appears to allow arbitrary file upload. As for the third requirement, there is no way to declare a `*multipart.FileHeader` object from a template. Would there be?
 
-Enters the `FormFile` function:
+Enter the `FormFile` function:
 
 ```go {linenos=table,hl_lines=[4,8,13],linenostart=569}
 // FormFile returns the first file for the provided form key.
@@ -551,7 +552,7 @@ The `FormFile` function fulfills the first requirement due to returning a `*mult
 {{ .c.SaveUploadedFile (.c.FormFile "fish") .title }}
 ```
 
-Testing locally, it works. We preview by sending a multipart form request which contains a file with the form input name `fish` and a URL query parameter `title` containg a file path. Good thing for us that the parentheses will be considered as only the first return value and not include the error.
+Testing locally, it works. We preview by sending a multipart form request which contains a file with the form input name `fish` and a URL query parameter `title` containg a file path. Good thing for us that the parentheses will be considered as only the first return value and not include the error (if it is nil).
 
 ```python {linenos=table,hl_lines=[],linenostart=1}
 import requests
@@ -582,7 +583,7 @@ At this point, I could not find any other useful and usable function. We need to
 
 The root `/` directory had `/app/` which contains the challenge's code. The root also contained `/app.bk/` which appeared to be a copy/backup of `/app/`. 
 
-Since level 1, the challenge offered the possibility of resetting the challenge due to concerns of being stuck in a restart loop. That could be done by visiting the route `/reset`. I hadn't noticed that route in the Go code, so it must be implemented in some other way. When exploring the filesystem, I found two PHP scripts which Apache pointed at when we visited `GET /reset` and `GET /source`. 
+Since level 1, the challenge offered the possibility of resetting the challenge due to concerns of being stuck in a restart loop. That could be done by visiting the route `/reset`. I hadn't noticed that route in the Go code, so it must be implemented in some other way. When exploring the filesystem in level 1, I found two PHP scripts which Apache pointed at when we visited `GET /reset` and `GET /source`. 
 
 The `reset.php` script took care of replacing the `/app/` directory with a clean copy of the backup and restarting the challenge service. 
 
@@ -609,7 +610,7 @@ The `reset.php` script took care of replacing the `/app/` directory with a clean
 
 The `source.php` script took care of showing us the contents of `main.go`. This functionality also wasnt seen in the Go code, so now it makes sense now.
 
-My first train of thought was to try and backdoor `/app.bk/main.go` and reset so that we get setup a backdoored version of the challenge. This did not work as we did not have permissions to write in `/app.bk/`. Putting a PHP file in `/var/www/html/` was also not usable, due to the proxy only taking `reset` and `source`. 
+My first train of thought was to try and backdoor `/app.bk/main.go` and reset so that we get setup a backdoored version of the challenge. This did not work as we did not have permissions to write in `/app.bk/`. Putting a PHP file in `/var/www/html/` was also not usable, due to the proxy only taking `reset` and `source` and I don't remember if we even had the permissions to do so.
 
 We could try to backdoor `/app/main.go` (which we do have permissions for) but this wouldn't change the program that is already loaded in memory.
 
@@ -865,9 +866,9 @@ func main() {
 }
 ```
 
-The main difference with the second level is that a `filter` function is called before updating the `templates/preview.html` file.
+The main difference with the second level is that a `filter` function is called before updating the `templates/preview.html` file in the `POST /update` route.
 
-Let's look at the three specific regular expressions used to check our template input.
+Let's look at the three specific regular expressions used to check our input template.
 ```go {linenos=table,hl_lines=[],linenostart=20}
 r1, _ := regexp.Compile(`(?i)(\x7b\x7b[^\x7d]*(["\x60\(\)=\|]|Request|Writer|Params|Handle)[^\x7d]*\x7d\x7d)`)
 r2, _ := regexp.Compile(`(?i)(\x7b\x7b[^\x7d]*(\.title|\.eventname|\.firstname|\.lastname|\.companyname|\.custom[0-9]+)[^\x7d]*\x7d\x7d)`)
@@ -995,6 +996,6 @@ It was a good learning experience to explore SSTI in Go as I did not know how it
 
 I really enjoyed this challenge due to having to find gadgets within a known open-source library and due to getting practice auditing code which was a fun throwback to my OSWE certification.  
 
-The challenge author shared with me that they decided to look into vulnerabilities that can happen in Go after experiencing a challenge I designed and published on [RingZer0 CTF](https://ringzer0ctf.com/) with their help. That is how this SSTI challenge came to be. If you are curious, you can try my web challenge `Lotto 8/33` on RingZer0 CTF.
+The challenge author shared with me that they decided to look into vulnerabilities that can happen in Go after experiencing a challenge I designed and published on [RingZer0 CTF](https://ringzer0ctf.com/) with their help. That is how this SSTI challenge came to be. If you are curious, you can try my web challenge **Lotto 8/33** on RingZer0 CTF.
 
-Many thanks to the challenge author **Marc Olivier Bergeron (MarcoB#1204)**
+Many thanks to the challenge author **Marc Olivier Bergeron** and the **NSEC team** ❤️
