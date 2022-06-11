@@ -16,14 +16,13 @@ paginate = 3
 
         [languages.en.menu]
             [[languages.en.menu.main]]
-                name = "CV"
-                weight = 2
-                url = "/curriculum-vitae"
-
-            [[languages.en.menu.main]]
                 name = "Posts"
                 weight = 1
                 url = "posts/"
+#            [[languages.en.menu.main]]
+#                name = "CV"
+#                weight = 2
+#                url = "/curriculum-vitae"
       
             [[languages.en.menu.main]]
                 name = "Contact"
