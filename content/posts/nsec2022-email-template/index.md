@@ -25,6 +25,8 @@ go build main.go
 ./main
 ```
 
+Also, the URLs of the challenge were only accessible during the event due to the CTF having its own infrastructure.
+
 ## Level 1 - Baby Steps
 
 Accessing the website (http://dev.email-template.ctf), we are welcomed with an application that allows us to specify a template for a marketing email which can contain variables like `{{ .title }}`. There is a link to download the source code of the application, which uses the Go language.
