@@ -25,7 +25,7 @@ go build main.go
 ./main
 ```
 
-Also, the URLs of the challenge were only accessible during the event due to the CTF having its own infrastructure.
+Also, the URLs of the challenge were only accessible during the event through a VPN.
 
 ## Level 1 - Baby Steps
 
