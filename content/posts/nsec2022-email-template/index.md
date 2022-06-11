@@ -245,7 +245,7 @@ func main() {
 
 This is the landing page, no user input appears to be considered here. It does use a custom struct[ure] called `MyApp` to fetch the contents of a given template.
 
-The struct is composed of only one variable, which is the `templateName` of type `string`. In Go, there is the concept of exported variables and functions. Being exported, means programmers can refer to the respective item directly when outside the package it was declared in. To be considered as exported, variables' and functions' names have to be declared with a capital letter at the beginning.
+The struct is composed of only one variable, which is the `templateName` of type `string`. In Go, there is the concept of exported variables and functions. Being exported, means programmers can refer to the respective item directly when outside the package it was declared in. To be considered as exported, variable and function names have to be declared with a capital letter at the beginning.
 
 ```go
 MyApp.ReadFile()   // OK, wherever.
@@ -297,7 +297,7 @@ After evaluating this template, the `m` instance will have its `templateName` ch
 ```
 
 We upload this template and then preview it while making sure to use the GET query parameter `title` as our filename. We then get the flag. 
-Keep in mind, if the file does not exist, the directory will be listed. This will help us enumerate a few other files later on.
+Keep in mind, if the file does not exist, the directory will be listed. This will help us enumerate a few other files later.
 ```
 GET /preview?title=/flag.txt
 ```
