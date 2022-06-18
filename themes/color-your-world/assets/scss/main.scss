@@ -9,7 +9,9 @@
 // Get transition for color changes
 $change-transition: {{ .Site.Params.Style.changeTransition | default .Site.Data.default.style.changeTransition }};
 
-
+.circle-logo {
+  border-radius: 50%
+}
 
 html {
   font-size: $font-size;

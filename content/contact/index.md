@@ -6,7 +6,7 @@ description     : "How to reach me."
 sitemapExclude  : true
 ---
 
-{{< img class="borderless rounded" src="logo.png" caption="Fish in Space logo" resize=true >}}
+{{< img class="borderless circle-logo" src="logo.png" caption="Fish in Space logo" resize=true >}}
 
 If you have seen the username "Fish in Space" somewhere, it was likely me.
 
